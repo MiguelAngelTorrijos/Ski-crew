@@ -9,7 +9,8 @@ const hbs = require("hbs");
 const app = express();
 
 
-require("./config")(app);
+require("./config")(app);  
+require('./config/session.config')(app);
 
 
 const projectName = "Ski-crew";
@@ -18,8 +19,7 @@ const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowe
 app.locals.title = `${capitalized(projectName)}`;
 
 // 👇 Start handling routes here
-const index = require("./routes/index");
-app.use("/", index);
+require('./routes/index')(app);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
