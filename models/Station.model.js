@@ -1,6 +1,4 @@
 const { Schema, model } = require("mongoose");
-const { Comment } = require("./Comment.model")
-const { Event } = require("./Event.model")
 
 const stationsSchema = new Schema({
   name: {
@@ -11,38 +9,61 @@ const stationsSchema = new Schema({
     maxlength: 15,
     trim: true,
   },
-  location: String,
+  location: {
+    type: {
+      type: String
+    },
+    coordinates: [Number]
+  },
+  zone: String,
   description: {
     type: String,
     min: 20,
     max: 350
   },
-  dateOpen: String,
-  dateClose: String,
-  kmSlopes: Number,
-  numberOfslopes: Number,
-  blueSlopes: Number,
-  greenSlopes: Number,
-  redSlopes: Number,
-  blackSlopes: Number,
-  maxCote: Number,
-  minCote: Number,
-  snowpark: Bolean,
-  priceDay: Number,
+  dateOpen: {
+    type: Date,
+    default: Date.now
+  },
+  dateClose: {
+    type: Date,
+    default: Date.now
+  },
+  stationInfo: {
+    kmSlopes: Number,
+    numberOfslopes: Number,
+    snowpark: String,
+    mapSlopes: String,
+    slopesLevel: {
+      blueSlopes: Number,
+      greenSlopes: Number,
+      redSlopes: Number,
+      blackSlopes: Number,
+    },
+    cote: {
+      maxCote: Number,
+      minCote: Number
+    },
+    priceDay: Number,
+    capacity: Number
+  },
   imgbackground: String,
-  capacity: String,
-  imageEvent: {
+  Carrousel: {
     type: String
   },
-  imgCarrousel: {
-    type: String
-  },
-  mapSlopes: String,
-  comments: [Comment],
-  events: [Event]
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Comment'
+  }],
+  events: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Event'
+  }],
 }, {
   timestamps: true
 })
+
+stationsSchema.index({ location: '2dsphere' })
 
 const Stations = model("Stations", stationsSchema);
 
