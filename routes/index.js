@@ -1,3 +1,9 @@
 module.exports = app => {
-  app.use("/", require("./auth.routes"));   
+
+    // Base URL's
+
+    app.use("/profile", require("./user.routes"))
+    app.use("/", require("./base.routes"))
+    app.use("/stations", require("./station.routes"))
+    app.use("/", require("./auth.routes"))
 }

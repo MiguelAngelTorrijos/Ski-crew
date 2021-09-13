@@ -22,7 +22,10 @@ const userSchema = new Schema({
     },
     required: [true, "Email required"]
   },
-  password: String,
+  password: {
+    type: String,
+    required: true
+  },
   role: {
     type: String,
     enum: ['USER', 'ADMIN'],
@@ -42,3 +45,6 @@ const userSchema = new Schema({
 const User = model("User", userSchema);
 
 module.exports = User;
+
+
+
