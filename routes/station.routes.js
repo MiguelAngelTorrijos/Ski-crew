@@ -46,8 +46,10 @@ router.post('/create', (req, res) => {
 
     Station
         .create({ name, location, zone, dateOpen, dateClose, imgbackground, stationInfo })
-        .then(theStation => res.redirect(`/`))
-        .catch(err => console.log(err))
+        .then(theStation => res.redirect(`/stations`))
+        .catch(err => console.log(err)) 
+
+
 
 })
 

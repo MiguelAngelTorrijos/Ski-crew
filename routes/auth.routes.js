@@ -2,9 +2,7 @@ const router = require("express").Router();
 const User = require('./../models/User.model');
 const bcrypt = require('bcrypt')
 
-router.get('/' ,  (req, res , next) => {
-      res.redirect('/auth/login')
-})
+
 
 
 router.get('/auth/login' , (req,  res , next) => {
@@ -60,8 +58,6 @@ router.post('/auth/sign-in', (req, res, next) => {
               res.render('./auth/sign-in' , {errorMsg: 'Usuario ya registrado'});
           }
      })   
-
-
      const bcryptSalt = 10; 
      const salt = bcrypt.genSaltSync(bcryptSalt); 
      const hashPass = bcrypt.hashSync(password, salt);

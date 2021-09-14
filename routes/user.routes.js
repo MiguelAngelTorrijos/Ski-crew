@@ -1,12 +1,40 @@
 const router = require("express").Router();
+const User = require('./../models/User.model');
+const { isLoggedIn } = require('./../middleware');
 
-const User = require('./../models/User.model')
 
-router.get('/', (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
     User
         .find()
-        .then(users => res.render('users/profile'))
+        .then((user) => {
+            res.render('users/profile', { user: req.session.currentUser })
+        })
         .catch(err => console.log(err))
 })
 
+
+router.post('/', isLoggedIn, (req, res, next) => {
+    res.send('Hello World');
+})
+
+
+
+router.get('/edit/', isLoggedIn, (req, res, next) => {
+    res.render('./users/profile-change');
+})
+
+router.post('/edit/', (req, res, next) => {
+    const { username, email, photoProfile } = req.body;
+    console.log(req.body)
+
+
+    User
+        .findByIdAndUpdate(req.session.currentUser, { username, email, photoProfile }, { new: true })
+        .then((response) => {
+            console.log(response, 'asadsadads')
+            res.redirect('/profile')
+        })
+        .catch(err => console.log(err));
+
+})
 module.exports = router;
