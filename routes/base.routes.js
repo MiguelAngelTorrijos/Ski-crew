@@ -1,8 +1,8 @@
 const router = require("express").Router();
 
-router.get("/", (req, res, next) => {
-  res.render("index");
-});
+router.get('/', (req, res, next) => {
+  res.redirect('/auth/login')
+})
 
 //ruta favoritos
 

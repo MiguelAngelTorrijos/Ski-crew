@@ -1,0 +1,99 @@
+<div class="container">
+    {{#with theStation}}
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+            <h2>Nueva estación</h2>
+            <hr>
+
+            <form action="/stations/edit/{{id}}" method="POST">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{name}}">
+                </div>
+                <div class="form-group">
+                    <label for="zone">Ubicación</label>
+                    <input type="text" class="form-control" id="zone" name="zone" value="{{zone}}">
+                </div>
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <input type="text" class="form-control" id="description" name="description" value="{{description}}">
+                </div>
+                <div class="form-group">
+                    <label for="dateOpen">Fecha de apertura</label>
+                    <input type="date" id="dateOpen" name="dateOpen" min="2021-09-13" max="2022-01-01"
+                        value="{{dateOpen}}" />
+                </div>
+                <div class="form-group">
+                    <label for="dateClose">Fecha de cierre</label>
+                    <input type="date" id="dateClose" name="dateClose" min="2021-09-13" max="2023-01-01"
+                        value="{{dateClose}}" />
+                </div>
+                <div class="form-group">
+                    <label for="capacity">Capacidad de la estación</label>
+                    <input type="number" class="form-control" id="capacity" name="capacity"
+                        value="{{stationInfo.capacity}}">
+                </div>
+                <div class="form-group">
+                    <label for="kmSlopes">Km de pista esquiables</label>
+                    <input type="number" class="form-control" id="kmSlopes" name="kmSlopes"
+                        value="{{stationInfo.kmSlopes}}">
+                </div>
+                <div class="form-group">
+                    <label for="snowpark">Numero de snowpark de la estación</label>
+                    <input type="number" class="form-control" id="snowpark" name="snowpark"
+                        value="{{stationInfo.snowpark}}">
+                </div>
+                <div class="form-group">
+                    <label for="mapSlopes">Url con el Mapa de pistas</label>
+                    <input type="text" class="form-control" id="mapSlopes" name="mapSlopes"
+                        value="{{stationInfo.mapSlopes}}">
+                </div>
+                <div class="form-group">
+                    <label for="blueSlopes">Numero de pistas azules</label>
+                    <input type="number" class="form-control" id="blueSlopes" name="blueSlopes"
+                        value="{{stationInfo.blueSlopes}}">
+                </div>
+                <div class="form-group">
+                    <label for="greenSlopes">Numero de pistas verdes</label>
+                    <input type="number" class="form-control" id="greenSlopes" name="greenSlopes"
+                        value="{{stationInfo.greenSlopes}}">
+                </div>
+                <div class="form-group">
+                    <label for="redSlopes">Numero de pistas rojas</label>
+                    <input type="number" class="form-control" id="redSlopes" name="redSlopes"
+                        value="{{stationInfo.redSlopes}}">
+                </div>
+                <div class="form-group">
+                    <label for="blackSlopes">Numero de pistas negras</label>
+                    <input type="number" class="form-control" id="blackSlopes" name="blackSlopes"
+                        value="{{stationInfo.blackSlopes}}">
+                </div>
+                <div class="form-group">
+                    <label for="maxCote">Cota máxima</label>
+                    <input type="number" class="form-control" id="maxCote" name="maxCote"
+                        value="{{stationInfo.maxCote}}">
+                </div>
+                <div class="form-group">
+                    <label for="minCote">Cota minima</label>
+                    <input type="number" class="form-control" id="minCote" name="minCote"
+                        value="{{stationInfo.minCote}}">
+                </div>
+                <div class="form-group">
+                    <label for="priceDay">Precio del forfait</label>
+                    <input type="number" class="form-control" id="priceDay" name="priceDay"
+                        value="{{stationInfo.priceDay}}">
+                </div>
+                <div class="form-group">
+                    <label for="imgbackground">Url con imagen de background</label>
+                    <input type="text" class="form-control" id="imgbackground" name="imgbackground"
+                        value="{{stationInfo.imgbackground}}">
+                </div>
+                <button type="submit" class="btn btn-dark btn-block">Terminar edición</button>
+                <hr>
+            </form>
+        </div>
+    </div>
+    {{/with}}
+
+</div>
