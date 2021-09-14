@@ -1,1 +1,110 @@
-<h1>detalles de la estación</h1>
+<div class="container">
+    {{#with theStation}}
+    <h1>{{name}}</h1>
+    <hr>
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <strong>Ubicación</strong>
+            <br>
+            {{zone}}
+        </div>
+        <div class="col-md-4">
+            <strong>Descripción</strong>
+            <br>
+            {{description}}
+        </div>
+        <div class="col-md-4">
+            <strong>Apertura de la estación</strong>
+            <br>
+            {{dateOpen}}
+        </div>
+        <div class="col-md-4">
+            <strong>Cierre de la estación</strong>
+            <br>
+            {{dateClose}}
+        </div>
+        <h5>Información de pistas</h5>
+        <div class="col-md-4">
+            <strong>kilometros esquiables</strong>
+            <br>
+            {{stationInfo.kmSlopes}}
+        </div>
+        <div class="col-md-4">
+            <strong>Total de pistas</strong>
+            <br>
+            {{stationInfo.numberOfslopes}}
+        </div>
+        <div class="col-md-4">
+            <strong>Total de snowparks</strong>
+            <br>
+            {{stationInfo.snowpark}}
+        </div>
+        <div class="col-md-4">
+            <strong>Mapa de pistas</strong>
+            <br>
+            <a href="{{stationInfo.mapSlopes}}">mostrar</a>
+        </div>
+        <h5>Numero de pistas por tipo</h5>
+        <div class="col-md-4">
+            <strong>Pistas azules</strong>
+            <br>
+            {{stationInfo.slopesLevel.blueSlopes}}
+        </div>
+        <div class="col-md-4">
+            <strong>Pistas verdes</strong>
+            <br>
+            {{stationInfo.slopesLevel.greenSlopes}}
+        </div>
+        <div class="col-md-4">
+            <strong>Pistas rojas</strong>
+            <br>
+            {{stationInfo.slopesLevel.redSlopes}}
+        </div>
+        <div class="col-md-4">
+            <strong>Pistas negras</strong>
+            <br>
+            {{stationInfo.slopesLevel.blackSlopes}}
+        </div>
+        <h5>Cotas de la estación</h5>
+        <div class="col-md-4">
+            <strong>Cota maxima</strong>
+            <br>
+            {{stationInfo.cote.maxCote}}
+        </div>
+        <div class="col-md-4">
+            <strong>Cota minima</strong>
+            <br>
+            {{stationInfo.cote.minCote}}
+        </div>
+        <div class="col-md-4">
+            <strong>Forfait diario</strong>
+            <br>
+            {{stationInfo.priceDay}}
+        </div>
+        <div class="col-md-4">
+            <strong>Aforo maximo de la estación</strong>
+            <br>
+            {{stationInfo.capacity}}
+        </div>
+
+        <hr>
+        <strong>Eventos</strong>
+        <br>
+        <div class="col-md-4">
+            {{#each events}}
+            {{tittle}} {{date}} {{description}} {{imageEvent}}
+            {{/each}}
+        </div>
+        <strong>Comentarios</strong>
+        <div class="col-md-4">
+            {{#each comments}}
+            {{tittle}} {{description}} {{user}}
+            {{/each}}
+        </div>
+
+    </div>
+
+
+    <a href="/stations/edit/{{id}}" class="btn btn-warning">Editar</a>
+    <a href="/stations" class="btn btn-dark">Volver</a>
+    {{/with}}

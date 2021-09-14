@@ -1,1 +1,12 @@
-<h1>esta funcionando</h1>
+<div class="container">
+    <h2>Estaciones de Ski de la peninsula</h2>
+    <hr>
+
+    {{#each stations}}
+    <h5>{{name}} - <small><a href="/stations/{{id}}">Detalles</a></h5></small>
+    <p>{{zone}}</p>
+    <img src="{{imgbackground}}" alt="imagen estación">
+    <hr style="opacity: .5;">
+    {{/each}}
+    <a href="/" class="btn btn-dark">Volver</a>
+</div>

@@ -4,6 +4,7 @@ const { isLoggedIn } = require('./../middleware');
 
 
 router.get('/', isLoggedIn, (req, res) => {
+    console.log(req.session.currentUser, "<===============")
     User
         .find()
         .then((user) => {
@@ -11,6 +12,7 @@ router.get('/', isLoggedIn, (req, res) => {
         })
         .catch(err => console.log(err))
 })
+
 
 
 router.post('/', isLoggedIn, (req, res, next) => {
