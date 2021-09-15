@@ -1,5 +1,4 @@
 <div class="container">
-    {{#with theStation}}
     <h1>{{name}}</h1>
     <hr>
     <div class="row justify-content-center">
@@ -91,16 +90,39 @@
         <strong>Eventos</strong>
         <br>
         <div class="col-md-4">
+
             {{#each events}}
-            {{tittle}} {{date}} {{description}} {{imageEvent}}
+            {{title}}
+            {{date}}
+            {{description}}
+            <img src="{{imageEvent}}" alt="Imagen del evento">
             {{/each}}
         </div>
         <strong>Comentarios</strong>
+
+        <form action="/stations/{{id}}" method="POST">
+            <div class="form-group">
+                <label for="title">Titulo</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="form-group">
+                <textarea name="description" rows="10" cols="40" placeholder="Deja tu comentario"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-block">enviar</button>
+        </form>
+        <hr>
+        {{#each comments}}
         <div class="col-md-4">
-            {{#each comments}}
-            {{tittle}} {{description}} {{user}}
-            {{/each}}
+            {{title}} {{description}} {{username}}
         </div>
+        <form action="/stations/delete/{{_id}}" method="POST">
+            <button type="submit" class="btn btn-warning btn-block">eliminar</button>
+        </form>
+        <form action="/stations/edit/comment/{{_id}}" method="GET">
+            <button type="submit" class="btn btn-warning btn-block">editar</button>
+        </form>
+        {{/each}}
 
     </div> 
     <form action="/favs/{{id}}" method="POST">
@@ -108,4 +130,3 @@
         </form>    
     <a href="/stations/edit/{{id}}" class="btn btn-warning">Editar</a> 
     <a href="/stations" class="btn btn-dark">Volver</a>
-    {{/with}}
