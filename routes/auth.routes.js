@@ -2,11 +2,6 @@ const router = require("express").Router();
 const User = require('./../models/User.model');
 const bcrypt = require('bcrypt');
 
-
-
-
-
-
 router.get('/auth/login', (req, res, next) => {
     res.render('./auth/login-page')
 })
@@ -45,10 +40,10 @@ router.get('/stations', (req, res, next) => {
     res.send('Hello World');
 })
 
-
 router.get('/auth/sign-in', (req, res, next) => {
     res.render('./auth/sign-in');
 })
+
 
 router.post('/auth/sign-in', (req, res, next) => {
     const { username, password, email } = req.body;
@@ -77,15 +72,5 @@ router.post('/auth/sign-in', (req, res, next) => {
 router.get('/logout', (req, res) => {
     req.session.destroy(() => res.redirect('/auth/login'));
 })
-
-
-// router.use((req, res, next) => {
-//     req.session.currentUser ? next() : res.render('auth/login-form', { errorMsg: 'Desautorizado' })
-// })
-
-
-
-
-
 
 module.exports = router;

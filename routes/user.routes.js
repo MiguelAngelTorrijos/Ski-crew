@@ -4,7 +4,7 @@ const { isLoggedIn } = require('./../middleware');
 
 
 router.get('/', isLoggedIn, (req, res) => {
-    console.log(req.session.currentUser, "<===============")
+
     User
         .find()
         .then((user) => {
@@ -32,10 +32,7 @@ router.post('/edit/', (req, res, next) => {
 
     User
         .findByIdAndUpdate(req.session.currentUser, { username, email, photoProfile }, { new: true })
-        .then((response) => {
-            console.log(response, 'asadsadads')
-            res.redirect('/profile')
-        })
+        .then((response) => { res.redirect('/profile') })
         .catch(err => console.log(err));
 
 })

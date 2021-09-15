@@ -3,12 +3,13 @@ const router = require("express").Router()
 const Station = require('./../models/Station.model')
 const Comment = require('./../models/Comment.model')
 const Event = require('./../models/Event.model')
+const { isLoggedIn } = require('./../middleware');
 
 
 
 // LISTADO ESTACIONES
 
-router.get('/', (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
     Station
         .find()
         .then(stations => res.render('stations/list', { stations }))
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
 
 // CREAR ESTACIONES
 
-router.get('/create', (req, res) => {
+router.get('/create', isLoggedIn, (req, res) => {
 
     Station
         .find()
@@ -54,22 +55,34 @@ router.post('/create', (req, res) => {
 
 })
 
-// DETALLES ESTACIÓN
+//  EDITAR COMENTARIOS
 
-router.get('/:id', (req, res) => {
+router.get('/edit/comment/:id', (req, res) => {
+
     const { id } = req.params
-    Station
+
+    Comment
         .findById(id)
-        .populate('comments')
-        .populate('events')
-        .then(theStation => res.render('stations/details', { theStation }))
+        .then(comments => res.render('stations/edit-comment', comments))
         .catch(err => console.log(err))
 })
 
+router.post('/edit/comment/:id', (req, res) => {
+
+    const { id } = req.params
+    const { title, description } = req.body
+    console.log("este es el req body", req.body)
+
+    Comment
+        .findByIdAndUpdate(id, { title, description }, { new: true })
+        .then(() => Station.findOne({ comments: id }))
+        .then(station => res.redirect(`/stations/${station._id}`))
+        .catch(err => console.log(err))
+})
 
 // EDICIÓN DE ESTACIÓN
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', isLoggedIn, (req, res) => {
 
     const { id } = req.params
 
@@ -113,5 +126,49 @@ router.post('/edit/:id', (req, res) => {
         })
         .catch(err => console.log(err))
 })
+
+// ELIMINAR COMENTARIOS
+
+router.post('/delete/:id', (req, res) => {
+
+    const { id } = req.params
+    console.log('quiero eliminar un comentario', id)
+
+    Comment
+        .findByIdAndRemove(id)
+        .then(() => { res.redirect('/stations') })
+        .catch(err => console.log(err))
+})
+
+// DETALLES ESTACIÓN
+
+router.get('/:id', isLoggedIn, (req, res) => {
+    const { id } = req.params
+    Station
+        .findById(id)
+        .populate('comments')
+        .populate('events')
+        .then(theStation => res.render('stations/details', theStation))
+        .catch(err => console.log(err))
+})
+
+//  CREAR COMENTARIOS
+
+router.post('/:id', (req, res) => {
+    const { id } = req.params
+    const { title, description } = req.body
+
+    Comment
+        .create({ title, description, user: req.session.currentUser._id })
+        .then(comment => {
+
+            return Station
+                .findByIdAndUpdate(id, { "$push": { "comments": comment._id } })
+        })
+        .then(() => res.redirect(`/stations`))
+        .catch(err => console.log(err))
+})
+
+
 
 module.exports = router;

@@ -1,0 +1,42 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+            <h2>Nuevo evento</h2>
+            <hr>
+            <form action="/events/new" method="POST">
+                <div class="form-group">
+                    <label for="title">Título</label>
+                    <input type="text" class="form-control" id="title" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="date">Fecha</label>
+                    <input type="date" class="form-control" id="date" name="date">
+                </div>
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <input type="text" class="form-control" id="description" name="description">
+                </div>
+                <div class="form-group">
+                    <label for="imageEvent">Imagen del evento</label>
+                    <input type="text" class="form-control" id="imageEvent" name="imageEvent">
+                </div>
+
+                <label for="station">Estación:</label>
+                <select name="station" id="station">
+                    <optgroup>
+                        {{#each stations}}
+                        <option value={{id}}>{{name}}</option>
+                        {{/each}}
+                    </optgroup>
+                </select>
+
+                <button type="submit" class="btn btn-dark btn-block">Crear un evento</button>
+
+            </form>
+        </div>
+    </div>
+
+
+</div>
