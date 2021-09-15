@@ -37,6 +37,10 @@ router.post('/edit/', (req, res, next) => {
             res.redirect('/profile')
         })
         .catch(err => console.log(err));
+}) 
 
-})
+
+
+
+
 module.exports = router;

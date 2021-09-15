@@ -1,1 +1,12 @@
-<h1>estos son los favoritos</h1>
+<p>
+   
+   <div class="container text-center"> 
+       <h1>Tus estaciones favoritos</h1>
+    {{#each user.favorites}} 
+     <p>Nombre de la  estacion: {{name}}</p>  
+     <p>Photo de la estacion: <br><img src="{{imgbackground}}"></p> 
+     <p>Location: {{zone}}</p>  
+      <a href="/favs/{{id}}/delete" class="btn btn-danger">DELETE</a>   
+    {{/each}}
+   </div>
+</p>

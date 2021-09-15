@@ -34,10 +34,12 @@ const userSchema = new Schema({
   photoProfile: {
     type: String,
   },
-  favorites: [{
+  favorites: [
+    {
     type: Schema.Types.ObjectId,
     ref: 'Stations'
-  }],
+  }
+],
 }, {
   timestamps: true
 })
