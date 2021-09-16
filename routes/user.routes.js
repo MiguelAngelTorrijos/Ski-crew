@@ -2,7 +2,6 @@ const router = require("express").Router();
 const User = require('./../models/User.model');
 const { isLoggedIn } = require('./../middleware');
 
-
 router.get('/', isLoggedIn, (req, res) => {
 
     User
@@ -29,7 +28,7 @@ router.post('/edit/', (req, res, next) => {
         .findByIdAndUpdate(req.session.currentUser, { username, email, photoProfile }, { new: true })
         .then((response) => { res.redirect('/profile') })
         .catch(err => console.log(err))
-}) 
+})
 
 
 
