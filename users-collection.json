@@ -1,0 +1,1 @@
+{"_id":{"$oid":"614088718d185ea326247757"},"username":"Miguel","email":"mats1346@gmail.com","password":"$2b$10$7Qg5j58R65kQLlq7tG2UtOL6miNxn/4Q7mop3dGmel7tPmyYy0T4y","role":"USER","favorites":[{"$oid":"613f97cb425df91cf0b6bbcd"}],"createdAt":{"$date":"2021-09-14T11:33:05.122Z"},"updatedAt":{"$date":"2021-09-15T23:34:12.826Z"},"__v":0}

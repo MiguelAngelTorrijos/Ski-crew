@@ -1,6 +1,6 @@
-const session = require('express-session');         // instalar     
-const MongoStore = require('connect-mongo');        // instalar
-const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+//const mongoose = require('mongoose');
 
 module.exports = app => {
     app.set('trust proxy', 1);
@@ -15,7 +15,7 @@ module.exports = app => {
                 httpOnly: true,
                 maxAge: 600000
             },
-            store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI })
+            store: MongoStore.create({ mongoUrl: process.env.DB_REMOTE })
         })
     );
 };

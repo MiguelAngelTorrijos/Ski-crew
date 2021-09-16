@@ -9,7 +9,7 @@ const hbs = require("hbs");
 const app = express();
 
 
-require("./config")(app);  
+require("./config")(app);
 require('./config/session.config')(app);
 
 const projectName = "Ski-crew";
@@ -23,6 +23,3 @@ require("./error-handling")(app);
 
 module.exports = app;
 
-
-
-//string de conexión mongo atlas//       mongodb + srv://Mats:1234@cluster0.qm0tz.mongodb.net/Ski-crew//

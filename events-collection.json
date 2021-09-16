@@ -1,0 +1,3 @@
+{"_id":{"$oid":"61409e8021bdbce80d135883"},"title":"La vida de Brian ","date":null,"description":"","imageEvent":"","createdAt":{"$date":"2021-09-14T13:07:12.942Z"},"updatedAt":{"$date":"2021-09-14T13:07:12.942Z"},"__v":0}
+{"_id":{"$oid":"61409ec1422740d20a095e65"},"title":"La vida de Brian 2","date":null,"description":"","imageEvent":"","createdAt":{"$date":"2021-09-14T13:08:17.489Z"},"updatedAt":{"$date":"2021-09-14T13:08:17.489Z"},"__v":0}
+{"_id":{"$oid":"6140a2af616fd75cf481b35a"},"title":"La vida de Brian 4","date":null,"description":"","imageEvent":"","createdAt":{"$date":"2021-09-14T13:25:03.985Z"},"updatedAt":{"$date":"2021-09-14T13:25:03.985Z"},"__v":0}
