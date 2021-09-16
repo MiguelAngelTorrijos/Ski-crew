@@ -6,7 +6,7 @@
             <h2>Nueva estación</h2>
             <hr>
 
-            <form action="/stations/create" method="POST">
+            <form action="/stations/create" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Nombre</label>
                     <input type="text" class="form-control" id="name" name="name">
@@ -14,6 +14,11 @@
                 <div class="form-group">
                     <label for="zone">Ubicación</label>
                     <input type="text" class="form-control" id="zone" name="zone">
+                </div>
+                <div class="form-group">
+                    <label>Coordenadas</label>
+                    <input type="text" name="latitude" placeholder="latitude">
+                    <input type="text" name="longitude" placeholder="longitude">
                 </div>
                 <div class="form-group">
                     <label for="description">Descripción</label>
@@ -40,8 +45,8 @@
                     <input type="number" class="form-control" id="snowpark" name="snowpark">
                 </div>
                 <div class="form-group">
-                    <label for="mapSlopes">Url con el Mapa de pistas</label>
-                    <input type="text" class="form-control" id="mapSlopes" name="mapSlopes">
+                    <label for="mapSlopes">Mapa de pistas</label>
+                    <input type="file" class="form-control-file" id="mapSlopes" name="imgFile">
                 </div>
                 <div class="form-group">
                     <label for="blueSlopes">Numero de pistas azules</label>
@@ -72,12 +77,12 @@
                     <input type="number" class="form-control" id="priceDay" name="priceDay">
                 </div>
                 <div class="form-group">
-                    <label for="imgbackground">Url con imagen de background</label>
-                    <input type="text" class="form-control" id="imgbackground" name="imgbackground">
+                    <label for="imgbackground">Imagen de background</label>
+                    <input type="file" class="form-control-file" id="imgbackground" name="imgFile">
                 </div>
                 <button type="submit" class="btn btn-dark btn-block">Crear estación</button>
                 <hr>
-                <a href="/" class="btn btn-dark">Volver</a>
+
             </form>
         </div>
     </div>

@@ -7,5 +7,5 @@ module.exports = app => {
     app.use("/stations", require("./station.routes"))
     app.use("/", require("./auth.routes"))
     app.use("/events", require("./events.routes"))
-
+    app.use('/api', require('./api.routes'))
 }

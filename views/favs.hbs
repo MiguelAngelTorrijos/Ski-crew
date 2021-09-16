@@ -1,12 +1,11 @@
 <p>
-   
-   <div class="container text-center"> 
-       <h1>Tus estaciones favoritos</h1>
-    {{#each user.favorites}} 
-     <p>Nombre de la  estacion: {{name}}</p>  
-     <p>Photo de la estacion: <br><img src="{{imgbackground}}"></p> 
-     <p>Location: {{zone}}</p>  
-      <a href="/favs/{{id}}/delete" class="btn btn-danger">DELETE</a>   
-    {{/each}}
-   </div>
+<div class="container text-center">
+   <h1>Mis estaciones favoritas</h1>
+   {{#each user.favorites}}
+   <p>Nombre de la estacion: {{name}}</p>
+   <p>Foto de la estacion: <br><img src="{{imgbackground}}"></p>
+   <p>Ubicación: {{zone}}</p>
+   <a href="/favs/{{id}}/delete" class="btn btn-dark">Eliminar</a>
+   {{/each}}
+</div>
 </p>

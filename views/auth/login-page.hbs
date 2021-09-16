@@ -1,37 +1,33 @@
-<div class="container">
+<div class="loginSingIn">
 
+    <div class="container-fluid">
 
-    <div class="row justify-content-center">
+        <div class="row justify-content-left">
 
-        <div class="col-md-4">
+            <div class="col-md-5 logInCss">
+                <img class="logo" src="../../images/logo vertical-01.png" alt="no funciona">
 
-            <h1>Log in</h1>
-            <br>
-            <hr>
-            <br>
+                <form action="/auth/login" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control border-0 backgroundColor" id="username" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control border-0 backgroundColor" id="password"
+                            name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Acceder</button>
+                </form>
+                {{#if errorMsg}}
+                <p id="errorMessage">{{errorMsg}}</p>
+                {{/if}}
+                <p>¿No estás registrad@? <a href="/auth/sign-in">Puedes registrarte aquí</a></p>
 
-            <form action="/auth/login" method="POST">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" name="username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password">
-                </div>
-                <button type="submit" class="btn btn-dark btn-block">Acceder</button> 
-                <a class="btn btn-dark btn-block" href="">Skip</a>
-            </form>
+            </div>
 
-            {{#if errorMsg}}
-            <p id="errorMessage">{{errorMsg}}</p>
-            {{/if}}
-
-            <hr>
-
-            <p>¿No estás registrad@? <a href="/auth/sign-in">You can register here </a></p>
         </div>
-    </div>
 
+    </div>
 
 </div>

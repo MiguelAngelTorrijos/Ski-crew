@@ -1,13 +1,12 @@
 const router = require("express").Router();
 const User = require("./../models/User.model");
 const Station = require('./../models/Station.model')
+
+
 router.get("/", (req, res, next) => {
   res.redirect("/auth/login");
 });
 
-//ruta favoritos
-//in hbs get the id of the station
-//in routes update User. Push the stationID to favorites
 router.get("/favs", (req, res, next) => {
   User
     .findById(req.session.currentUser._id)
@@ -18,6 +17,7 @@ router.get("/favs", (req, res, next) => {
     })
     .catch(err => console.log(err));
 });
+
 router.get('/favs/:id/delete', (req, res) => {
   const { id } = req.params;
   User
@@ -26,6 +26,7 @@ router.get('/favs/:id/delete', (req, res) => {
       res.redirect('/favs')
     })
 })
+
 router.post("/favs/:id", (req, res) => { 
   const{id} = req.params;
   User
@@ -33,6 +34,7 @@ router.post("/favs/:id", (req, res) => {
     .then(response => res.redirect('/favs'))
     .catch(err => console.log(err, "el error"))
 }) 
+
 module.exports = router;
 
 

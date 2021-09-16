@@ -13,7 +13,10 @@ const stationsSchema = new Schema({
     type: {
       type: String
     },
-    coordinates: [Number]
+    coordinates: [{
+      type: Number,
+      default: 0
+    }]
   },
   zone: String,
   description: {

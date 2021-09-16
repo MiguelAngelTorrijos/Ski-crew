@@ -1,15 +1,14 @@
 const router = require("express").Router()
-
 const Station = require('./../models/Station.model')
 const Comment = require('./../models/Comment.model')
-const Event = require('./../models/Event.model')
-const { isLoggedIn } = require('./../middleware');
-
+//const Event = require('./../models/Event.model')
+const { isLoggedIn } = require('./../middleware')
+const CDNupload = require('../config/cloudinary.config')
 
 
 // LISTADO ESTACIONES
 
-router.get('/', isLoggedIn, (req, res) => {
+router.get('/', isLoggedIn, (req, res, next) => {
     Station
         .find()
         .then(stations => res.render('stations/list', { stations }))
@@ -26,30 +25,50 @@ router.get('/create', isLoggedIn, (req, res) => {
         .catch(err => console.log(err))
 })
 
-router.post('/create', (req, res) => {
+router.post('/create', CDNupload.array('imgFile'), (req, res) => {
 
-    const { name, location, zone, description, dateOpen, dateClose, imgbackground } = req.body
-    const stationInfo = {
-        kmSlopes: req.body.kmSlopes,
-        snowpark: req.body.snowpark,
-        numberOfslopes: req.body.numberOfslopes,
-        mapSlopes: req.body.mapSlopes,
-        slopesLevel: {
-            blueSlopes: req.body.blueSlopes,
-            greenSlopes: req.body.greenSlopes,
-            redSlopes: req.body.redSlopes,
-            blackSlopes: req.body.blackSlopes
+
+    const { name, zone, description, dateOpen, dateClose } = req.body
+
+    const query = {
+        name,
+        zone,
+        description,
+        dateOpen,
+        dateClose,
+        location: {
+            type: 'Point',
+            coordinates: [req.body.latitude || 0, req.body.longitude || 0]
         },
-        cote: {
-            maxCote: req.body.maxCote,
-            minCote: req.body.minCote
-        },
-        priceDay: req.body.priceDay,
-        capacity: req.body.capacity
+
+        stationInfo: {
+            kmSlopes: req.body.kmSlopes,
+            snowpark: req.body.snowpark,
+            numberOfslopes: req.body.numberOfslopes,
+
+            slopesLevel: {
+                blueSlopes: req.body.blueSlopes,
+                greenSlopes: req.body.greenSlopes,
+                redSlopes: req.body.redSlopes,
+                blackSlopes: req.body.blackSlopes
+            },
+            cote: {
+                maxCote: req.body.maxCote,
+                minCote: req.body.minCote
+            },
+            priceDay: req.body.priceDay,
+            capacity: req.body.capacity
+        }
     }
 
+    // if (req.files[0]) query.stationInfo.mapSlopes = req.files[0].path
+    req.files[0] && (query.stationInfo.mapSlopes = req.files[0].path)
+
+    req.files[1] && (query.imgbackground = req.files[1].path)
+
     Station
-        .create({ name, location, zone, description, dateOpen, dateClose, imgbackground, stationInfo })
+        // .create({ name, location, zone, description, dateOpen, dateClose, stationInfo })
+        .create(query)
         .then(() => res.redirect(`/`))
         .catch(err => console.log(err))
 
@@ -88,7 +107,7 @@ router.get('/edit/:id', isLoggedIn, (req, res) => {
 
     Station
         .findById(id)
-        .then(theStation => res.render(`stations/edit`, { theStation }))
+        .then(theStation => res.render(`stations/edit`, theStation))
         .catch(err => console.log(err))
 })
 
@@ -97,7 +116,15 @@ router.post('/edit/:id', (req, res) => {
 
 
     const { id } = req.params
-    const { name, location, zone, description, dateOpen, dateClose, imgbackground } = req.body
+    const { name, zone, description, dateOpen, dateClose, imgbackground } = req.body
+    console.log(req.body)
+
+    const location = {
+        type: 'Point',
+        coordinates: [req.body.latitude || 0, req.body.longitude || 0]
+    }
+
+    console.log(location);
 
     const stationInfo = {
         kmSlopes: req.body.kmSlopes,
@@ -168,7 +195,6 @@ router.post('/:id', (req, res) => {
         .then(() => res.redirect(`/stations`))
         .catch(err => console.log(err))
 })
-
 
 
 module.exports = router;

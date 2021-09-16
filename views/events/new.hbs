@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container event">
 
     <div class="row justify-content-center">
 
         <div class="col-md-6">
             <h2>Nuevo evento</h2>
             <hr>
-            <form action="/events/new" method="POST">
+            <form action="/events/new" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="title">Título</label>
                     <input type="text" class="form-control" id="title" name="title">
@@ -20,9 +20,8 @@
                 </div>
                 <div class="form-group">
                     <label for="imageEvent">Imagen del evento</label>
-                    <input type="text" class="form-control" id="imageEvent" name="imageEvent">
+                    <input type="file" class="form-control-file" id="imageEvent" name="imageEvent">
                 </div>
-
                 <label for="station">Estación:</label>
                 <select name="station" id="station">
                     <optgroup>
@@ -31,12 +30,14 @@
                         {{/each}}
                     </optgroup>
                 </select>
-
-                <button type="submit" class="btn btn-dark btn-block">Crear un evento</button>
+                <button type="submit" class="btn btn-primary btn-block">Crear un evento</button>
 
             </form>
+
         </div>
+
     </div>
+
 
 
 </div>

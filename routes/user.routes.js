@@ -13,13 +13,9 @@ router.get('/', isLoggedIn, (req, res) => {
         .catch(err => console.log(err))
 })
 
-
-
 router.post('/', isLoggedIn, (req, res, next) => {
     res.send('Hello World');
 })
-
-
 
 router.get('/edit/', isLoggedIn, (req, res, next) => {
     res.render('./users/profile-change');
@@ -29,14 +25,11 @@ router.post('/edit/', (req, res, next) => {
     const { username, email, photoProfile } = req.body;
     console.log(req.body)
 
-
     User
         .findByIdAndUpdate(req.session.currentUser, { username, email, photoProfile }, { new: true })
         .then((response) => { res.redirect('/profile') })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
 }) 
-
-
 
 
 

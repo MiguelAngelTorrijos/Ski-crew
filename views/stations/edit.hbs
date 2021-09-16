@@ -1,12 +1,12 @@
 <div class="container">
-    {{#with theStation}}
+
     <div class="row justify-content-center">
 
         <div class="col-md-6">
+
             <h2>Nueva estación</h2>
             <hr>
-
-            <form action="/stations/edit/{{id}}" method="POST">
+            <form action="/stations/edit/{{id}}" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="name">Nombre</label>
                     <input type="text" class="form-control" id="name" name="name" value="{{name}}">
@@ -14,6 +14,11 @@
                 <div class="form-group">
                     <label for="zone">Ubicación</label>
                     <input type="text" class="form-control" id="zone" name="zone" value="{{zone}}">
+                </div>
+                <div class="form-group">
+                    <label>Dirección</label>
+                    <input type="text" name="latitude" placeholder="latitude">
+                    <input type="text" name="longitude" placeholder="longitude">
                 </div>
                 <div class="form-group">
                     <label for="description">Descripción</label>
@@ -45,8 +50,8 @@
                         value="{{stationInfo.snowpark}}">
                 </div>
                 <div class="form-group">
-                    <label for="mapSlopes">Url con el Mapa de pistas</label>
-                    <input type="text" class="form-control" id="mapSlopes" name="mapSlopes"
+                    <label for="mapSlopes">Mapa de pistas</label>
+                    <input type="file" class="form-control-file" id="mapSlopes" name="mapSlopes"
                         value="{{stationInfo.mapSlopes}}">
                 </div>
                 <div class="form-group">
@@ -85,16 +90,17 @@
                         value="{{stationInfo.priceDay}}">
                 </div>
                 <div class="form-group">
-                    <label for="imgbackground">Url con imagen de background</label>
-                    <input type="text" class="form-control" id="imgbackground" name="imgbackground"
+                    <label for="imgbackground">Imagen de background</label>
+                    <input type="file" class="form-control-file" id="imgbackground" name="imgbackground"
                         value="{{stationInfo.imgbackground}}">
                 </div>
                 <button type="submit" class="btn btn-dark btn-block">Terminar edición</button>
                 <hr>
 
             </form>
+
         </div>
+
     </div>
-    {{/with}}
 
 </div>

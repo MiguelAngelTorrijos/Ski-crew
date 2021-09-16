@@ -1,7 +1,47 @@
 <div class="container text-center">
+    <h2>Estaciones de Ski</h2>
+    <hr>
+    <div class="container-fluid">
+
+        <div class="row">
+
+            {{#each stations}}
+            <div class="col-4">
+                <div class="profile-card-6"><img src="{{imgbackground}}" class="img img-responsive">
+                    <div class="profile-name">{{name}}
+                        <br>
+                        {{zone}}
+                    </div>
+                    <div class="profile-position">
+                        <a href="/stations/{{id}}">Detalles</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+
+    </div>
+
+</div>
+<hr>
+<figure id="myMap"></figure>
+
+<script src="/js/directions.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/js/basic-map-setup.js"></script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8I56qCg47GR1CJcV1QJMlZWqIa6uypYw&callback=initMap"></script>
+
+
+
+
+
+
+
+{{!-- <div class="container text-center">
     <h2>Estaciones de Ski de la peninsula</h2>
     <hr>
-
     {{#each stations}}
     <h5>{{name}} - <small><a href="/stations/{{id}}">Detalles</a></h5></small>
     <p>{{zone}}</p>
@@ -9,4 +49,5 @@
     <hr style="opacity: .5;">
     {{/each}}
     <a href="/" class="btn btn-dark">Volver</a>
-</div>
+
+</div> --}}

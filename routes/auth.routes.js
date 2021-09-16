@@ -8,11 +8,11 @@ router.get('/auth/login', (req, res, next) => {
 
 router.post('/auth/login', (req, res, next) => {
     const { username, password } = req.body;
+    
     if (username.length === 0 || password.length === 0) {
         res.render('./auth/login-page', { errorMsg: 'Rellena los campos' })
         return
     }
-
 
     User
         .findOne({ username })
