@@ -4,7 +4,7 @@ function initMap() {
     const map = new google.maps.Map(
         document.querySelector('#myMap'),
         {
-            zoom: 10,
+            zoom: 8,
             center: directions.ironhackMAD.coords
         }
     )

@@ -1,11 +1,18 @@
-<p>
-<div class="container text-center">
+<div class="container text-center favsCss">
    <h1>Mis estaciones favoritas</h1>
-   {{#each user.favorites}}
-   <p>Nombre de la estacion: {{name}}</p>
-   <p>Foto de la estacion: <br><img src="{{imgbackground}}"></p>
-   <p>Ubicación: {{zone}}</p>
-   <a href="/favs/{{id}}/delete" class="btn btn-dark">Eliminar</a>
-   {{/each}}
+   <div class="row">
+
+      {{#each user.favorites}}
+      <div class="col-3">
+         <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{imgbackground}}" alt="Card image cap">
+            <div class="card-body">
+               <h5 class="card-title">{{name}}</h5>
+               <a href="/favs/{{id}}/delete" class="btn btn-primary">Eliminar</a>
+               <a href="/stations/{{id}}" class="btn btn-primary">Detalles</a>
+            </div>
+         </div>
+      </div>
+      {{/each}}
+   </div>
 </div>
-</p>

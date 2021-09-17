@@ -1,4 +1,5 @@
-<div class="container text-center">
+<div class="container text-center newEventCss">
+    <br>
     <h2>Estaciones de Ski</h2>
     <hr>
     <div class="container-fluid">
@@ -7,15 +8,16 @@
 
             {{#each stations}}
             <div class="col-4">
-                <div class="profile-card-6"><img src="{{imgbackground}}" class="img img-responsive">
-                    <div class="profile-name">{{name}}
-                        <br>
-                        {{zone}}
+                <a href=" /stations/{{_id}}">
+
+                    <div class="profile-card-6"><img src="{{imgbackground}}" class="img img-responsive">
+                        <div class="profile-name"><strong>{{name}}</strong>
+                            <br>
+                            <i>{{zone}}</i>
+                        </div>
+
                     </div>
-                    <div class="profile-position">
-                        <a href="/stations/{{id}}">Detalles</a>
-                    </div>
-                </div>
+                </a>
             </div>
             {{/each}}
 

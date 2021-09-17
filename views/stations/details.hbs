@@ -1,139 +1,191 @@
-<div class="container text-center">
-    <h1>{{name}}</h1>
+<div class="container text-center favsCss">
+    <div class="col-12 justify-content-center">
+        <h1>{{name}}</h1>
+    </div>
     <hr>
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <strong>Ubicación</strong>
+    <div class=" row justify-content-center">
+        <div class="col-12 ">
+            <h4><i>{{zone}}</i></h4>
             <br>
-            {{zone}}
-        </div>
-        <div class="col-md-6">
-            <strong>Descripción</strong>
-            <br>
-            {{description}}
         </div>
         <div class="col-md-6">
-            <strong>Apertura de la estación</strong>
+            <h4><strong>Descripción</strong></h4>
+            <p>{{description}}</p>
             <br>
-            {{dateOpen}}
         </div>
-        <div class="col-md-6">
-            <strong>Cierre de la estación</strong>
-            <br>
-            {{dateClose}}
-        </div>
-        <h5>Información de pistas</h5>
-        <div class="col-md-6">
-            <strong>kilometros esquiables</strong>
-            <br>
-            {{stationInfo.kmSlopes}}
-        </div>
-        <div class="col-md-6">
-            <strong>Total de pistas</strong>
-            <br>
-            {{stationInfo.numberOfslopes}}
-        </div>
-        <div class="col-md-6">
-            <strong>Total de snowparks</strong>
-            <br>
-            {{stationInfo.snowpark}}
-        </div>
-        <div class="col-md-6">
-            <strong>Mapa de pistas</strong>
-            <br>
-            <a href="{{stationInfo.mapSlopes}}">mostrar</a>
-        </div>
-        <h5>Numero de pistas por tipo</h5>
-        <div class="col-md-6">
-            <strong>Pistas azules</strong>
-            <br>
-            {{stationInfo.slopesLevel.blueSlopes}}
-        </div>
-        <div class="col-md-6">
-            <strong>Pistas verdes</strong>
-            <br>
-            {{stationInfo.slopesLevel.greenSlopes}}
-        </div>
-        <div class="col-md-6">
-            <strong>Pistas rojas</strong>
-            <br>
-            {{stationInfo.slopesLevel.redSlopes}}
-        </div>
-        <div class="col-md-6">
-            <strong>Pistas negras</strong>
-            <br>
-            {{stationInfo.slopesLevel.blackSlopes}}
-        </div>
-        <h5>Cotas de la estación</h5>
-        <div class="col-md-6">
-            <strong>Cota maxima</strong>
-            <br>
-            {{stationInfo.cote.maxCote}}
-        </div>
-        <div class="col-md-6">
-            <strong>Cota minima</strong>
-            <br>
-            {{stationInfo.cote.minCote}}
-        </div>
-        <div class="col-md-6">
-            <strong>Forfait diario</strong>
-            <br>
-            {{stationInfo.priceDay}}
-        </div>
-        <div class="col-md-6">
-            <strong>Aforo maximo de la estación</strong>
-            <br>
-            {{stationInfo.capacity}}
-        </div>
-
-        <hr>
-        <div class="col-md-12">
-            <strong>Eventos</strong>
-            <br>
-
-            {{#each events}}
-            {{title}}
-            {{date}}
-            {{description}}
-            <img src="{{imageEvent}}" alt="Imagen del evento">
-            <form action="/events/delete-event/{{_id}}" method="POST">
-                <button type="submit" class="btn btn-warning btn-block">eliminar</button>
-            </form>
-            {{/each}}
-        </div>
-        <div class="col-md-6">
-            <strong>Comentarios</strong>
-
-            <form action="/stations/{{id}}" method="POST">
-                <div class="form-group">
-                    <label for="title">Titulo</label>
-                    <input type="text" class="form-control" id="title" name="title">
-                </div>
-                <div class="form-group">
-                    <textarea name="description" rows="10" cols="40" placeholder="Deja tu comentario"></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-dark btn-block">enviar</button>
-            </form>
-            <hr>
-            {{#each comments}}
-            <div class="col-md-4">
-                {{title}} {{description}} {{username}}
-            </div>
-            <form action="/stations/delete/{{_id}}" method="POST">
-                <button type="submit" class="btn btn-warning btn-block">eliminar</button>
-            </form>
-            <form action="/stations/edit/comment/{{_id}}" method="GET">
-                <button type="submit" class="btn btn-warning btn-block">editar</button>
-            </form>
-            {{/each}}
-        </div>
-
     </div>
 
-    <form action="/favs/{{id}}" method="POST">
-        <button type="submit" class="btn btn-danger">Añadir a favoritos</button>
-    </form>
-    
-    <a href="/stations/edit/{{id}}" class="btn btn-warning">Editar</a>
-    <a href="/stations" class="btn btn-dark">Volver</a>
+    <h5>Información de pistas</h5>
+    <hr>
+    <div class="row justify-content-center">
+
+        <div class="col-md-2">
+            <h5><strong>Apertura de la estación</strong></h5>
+            <p>{{dateOpen}}</p>
+        </div>
+        <div class="col-md-2">
+            <h5><strong>Cierre de la estación</strong></h5>
+            <p>{{dateClose}}</p>
+        </div>
+
+        <div class="col-md-2">
+            <h5><strong>kilometros esquiables</strong></h5>
+            <p>{{stationInfo.kmSlopes}} Km</p>
+        </div>
+
+        <div class="col-md-2">
+            <h5><strong>Total de pistas</strong></h5>
+            <p>{{stationInfo.numberOfslopes}}</p>
+        </div>
+
+        <div class="col-md-2">
+            <h5><strong>Cantidad de snowparks</strong></h5>
+            <p>{{stationInfo.snowpark}}</p>
+        </div>
+
+        <br>
+
+    </div>
+    <br>
+    <h5>Numero de pistas por tipo</h5>
+    <hr>
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <h5><strong>Pistas azules</strong></h5>
+            <p style="color:blue;">{{stationInfo.slopesLevel.blueSlopes}}</p>
+        </div>
+
+        <div class="col-md-3">
+            <h5><strong>Pistas verdes</strong></h5>
+            <p style="color:green;">{{stationInfo.slopesLevel.greenSlopes}}</p>
+        </div>
+
+        <div class="col-md-3">
+            <h5><strong>Pistas rojas</strong></h5>
+            <p style="color:red;">{{stationInfo.slopesLevel.redSlopes}}</p>
+        </div>
+
+        <div class="col-md-3">
+            <h5><strong>Pistas negras</strong></h5>
+            <p>{{stationInfo.slopesLevel.blackSlopes}}</p>
+        </div>
+
+        <br>
+
+    </div>
+    <br>
+    <h5>Otros datos de interes</h5>
+    <hr>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-3">
+            <h5><strong>Cota maxima</strong></h5>
+            <p>{{stationInfo.cote.maxCote}} Metros</p>
+        </div>
+
+        <div class="col-md-3">
+            <h5><strong>Cota minima</strong></h5>
+            <p>{{stationInfo.cote.minCote}} Metros</p>
+        </div>
+
+        <div class="col-md-3">
+            <h5><strong>Aforo maximo</strong></h5>
+            <p>{{stationInfo.capacity}} Personas/Hora</p>
+        </div>
+
+        <div class="col-md-3">
+            <h5><strong>Forfait diario</strong></h5>
+            <p>{{stationInfo.priceDay}} €</p>
+        </div>
+
+        <br>
+
+    </div>
+    <hr>
+    <br>
+    <h5>Mapa de pistas</h5>
+    <a style="color:blue;" href="{{stationInfo.mapSlopes}}">Entra en el enlace para ver el mapa</a>
+    <hr>
+
+
+    <div class="col-md-12">
+        <h3>Eventos</h3>
+        <br>
+        {{#each events}}
+        <img class="eventImg" src="{{imageEvent}}" alt="Imagen del evento">
+        <br>
+        <br>
+        <h4><strong>{{title}}</strong></h4>
+        <h6>{{date}}</h6>
+        <p>{{description}}</p>
+        <form action="/events/delete-event/{{_id}}" method="POST">
+            <button type="submit" class="btn btn-primary btn-block">eliminar</button>
+            <br>
+        </form>
+        {{/each}}
+
+    </div>
+    <hr>
+    <div class="col-md-12">
+
+        <h3>Comentarios</h3>
+        <div class="col-4"></div>
+        <form action="/stations/{{_id}}" method="POST">
+            <div class="form-group">
+                <label for="title">Titulo</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="form-group">
+                <textarea name="description" rows="10" cols="40" placeholder="Deja tu comentario"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">enviar</button>
+        </form>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="row justify-content-center">
+        {{#each comments}}
+        <div class="col-4">
+            <div class="card-comment">
+                <h4>{{title}}</h4>
+                <hr>
+                <p>{{description}}</p>
+                <p>{{user}}</p>
+                <div class="d-flex justify-content-center comment-btns">
+                    <form action="/stations/delete/{{_id}}" method="POST">
+                        <button type="submit" class="btn btn-warning">eliminar</button>
+                    </form>
+                    <br>
+                    <form action="/stations/edit/comment/{{_id}}" method="GET">
+                        <button type="submit" class="btn btn-primary">editar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <div class="row justify-content-center">
+        <div class="col-3">
+            <a href="/stations" class="btn btn-primary">Volver</a>
+        </div>
+        <div class="col-3">
+            <a href="/stations/edit/{{_id}}" class="btn btn-warning">Editar</a>
+        </div>
+        <div class="col-3">
+            <form action="/favs/{{_id}}" method="POST">
+                <button type="submit" class="btn btn-danger">Añadir a favoritos</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>

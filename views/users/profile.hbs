@@ -1,10 +1,13 @@
-<div class="container text-center ">
-    <h1>Perfil de {{user.username}}</h1>
+<div class="container text-center newEventCss ">
     <br>
-    <img src="{{user.photoProfile}}">
-    <p> Profile name : {{user.username}}</p>
-    <p> Gmail: {{user.email}}</p>
-    <p>role: {{user.role}}</p>
+    <br>
+    <br>
+    <h1>Edita tu perfil {{user.username}}</h1>
+    <br>
+    <img src={{user.photoProfile}}>
+    <p> Nombre: {{user.username}}</p>
+    <p> Correo: {{user.email}}</p>
+    <p>Rol: {{user.role}}</p>
 
-    <a href="/profile/edit/" class="btn btn-dark">Edit profile</a>
+    <a href="/profile/edit/" class="btn btn-primary">Editar perfil</a>
 </div>

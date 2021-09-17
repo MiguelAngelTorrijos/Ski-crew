@@ -2,7 +2,7 @@
 const directions =
 {
     ironhackMAD: {
-        coords: { lat: 40.392499, lng: -3.698214 },
-        title: 'Campus de Madrid'
+        coords: { lat: 42.393303, lng: -0.513380 },
+        title: 'Punto cercano a estaciones'
     }
 }

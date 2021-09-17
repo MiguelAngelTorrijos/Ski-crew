@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require('./../models/User.model');
 const { isLoggedIn } = require('./../middleware');
+const CDNupload = require('../config/cloudinary.config')
 
 router.get('/', isLoggedIn, (req, res) => {
 
@@ -20,7 +21,7 @@ router.get('/edit/', isLoggedIn, (req, res, next) => {
     res.render('./users/profile-change');
 })
 
-router.post('/edit/', (req, res, next) => {
+router.post('/edit/', CDNupload.single('photoProfile'), (req, res, next) => {
     const { username, email, photoProfile } = req.body;
     console.log(req.body)
 

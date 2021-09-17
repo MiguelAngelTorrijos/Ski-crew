@@ -3,6 +3,7 @@ const Station = require('./../models/Station.model')
 const Comment = require('./../models/Comment.model')
 const { isLoggedIn } = require('./../middleware')
 const CDNupload = require('../config/cloudinary.config')
+const { formatDate } = require("../utils")
 
 // LISTADO ESTACIONES
 
@@ -145,7 +146,7 @@ router.post('/edit/:id', CDNupload.array('imgFile'), (req, res) => {
         }
     }
 
-
+    
     req.files[0] && (query.stationInfo.mapSlopes = req.files[0].path)
     req.files[1] && (query.imgbackground = req.files[1].path)
 
@@ -156,48 +157,6 @@ router.post('/edit/:id', CDNupload.array('imgFile'), (req, res) => {
         })
         .catch(err => console.log(err))
 })
-// router.post('/edit/:id', (req, res) => {
-//     console.log("ENTRA EN EDITAR")
-
-
-//     const { id } = req.params
-//     const { name, zone, description, dateOpen, dateClose, imgbackground } = req.body
-//     console.log(req.body)
-
-//     const location = {
-//         type: 'Point',
-//         coordinates: [req.body.latitude || 0, req.body.longitude || 0]
-//     }
-
-//     console.log(location);
-
-//     const stationInfo = {
-//         kmSlopes: req.body.kmSlopes,
-//         snowpark: req.body.snowpark,
-//         numberOfslopes: req.body.numberOfslopes,
-//         mapSlopes: req.body.mapSlopes,
-//         slopesLevel: {
-//             blueSlopes: req.body.blueSlopes,
-//             greenSlopes: req.body.greenSlopes,
-//             redSlopes: req.body.redSlopes,
-//             blackSlopes: req.body.blackSlopes
-//         },
-//         cote: {
-//             maxCote: req.body.maxCote,
-//             minCote: req.body.minCote
-//         },
-//         priceDay: req.body.priceDay,
-//         capacity: req.body.capacity
-//     }
-
-//     Station
-//         .findByIdAndUpdate(id, { name, location, zone, description, dateOpen, dateClose, imgbackground, stationInfo }, { new: true })
-//         .then((response) => {
-//             console.log(response, "QUE PASA AQUI")
-//             res.redirect(`../${id}`)
-//         })
-//         .catch(err => console.log(err))
-// })
 
 // ELIMINAR COMENTARIOS
 
@@ -221,7 +180,16 @@ router.get('/:id', isLoggedIn, (req, res) => {
         .findById(id)
         .populate('comments')
         .populate('events')
-        .then(theStation => res.render('stations/details', theStation))
+        .lean()
+        .then(theStation => {
+            theStation.dateOpen = formatDate(theStation.dateOpen)
+            theStation.dateClose = formatDate(theStation.dateClose)
+            theStation.events = theStation.events.map(e => {
+                e.date = formatDate(e.date)
+                return e
+            })
+            res.render('stations/details', theStation)
+        })
         .catch(err => console.log(err))
 })
 

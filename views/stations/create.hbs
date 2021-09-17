@@ -1,90 +1,96 @@
-<div class="container">
+<div class"backgroundCssBlue">
+    <div class="container newEventCss">
 
-    <div class="row justify-content-center">
+        <div class="row justify-content-center">
 
-        <div class="col-md-6">
-            <h2>Nueva estación</h2>
-            <hr>
-
-            <form action="/stations/create" method="POST" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name">
-                </div>
-                <div class="form-group">
-                    <label for="zone">Ubicación</label>
-                    <input type="text" class="form-control" id="zone" name="zone">
-                </div>
-                <div class="form-group">
-                    <label>Coordenadas</label>
-                    <input type="text" name="latitude" placeholder="latitude">
-                    <input type="text" name="longitude" placeholder="longitude">
-                </div>
-                <div class="form-group">
-                    <label for="description">Descripción</label>
-                    <input type="text" class="form-control" id="description" name="description">
-                </div>
-                <div class="form-group">
-                    <label for="dateOpen">Fecha de apertura</label>
-                    <input type="date" id="dateOpen" name="dateOpen" min="2021-09-13" max="2022-01-01" />
-                </div>
-                <div class="form-group">
-                    <label for="dateClose">Fecha de cierre</label>
-                    <input type="date" id="dateClose" name="dateClose" min="2021-09-13" max="2023-01-01" />
-                </div>
-                <div class="form-group">
-                    <label for="capacity">Capacidad de la estación</label>
-                    <input type="number" class="form-control" id="capacity" name="capacity">
-                </div>
-                <div class="form-group">
-                    <label for="kmSlopes">Km de pista esquiables</label>
-                    <input type="number" class="form-control" id="kmSlopes" name="kmSlopes">
-                </div>
-                <div class="form-group">
-                    <label for="snowpark">Numero de snowpark de la estación</label>
-                    <input type="number" class="form-control" id="snowpark" name="snowpark">
-                </div>
-                <div class="form-group">
-                    <label for="mapSlopes">Mapa de pistas</label>
-                    <input type="file" class="form-control-file" id="mapSlopes" name="imgFile">
-                </div>
-                <div class="form-group">
-                    <label for="blueSlopes">Numero de pistas azules</label>
-                    <input type="number" class="form-control" id="blueSlopes" name="blueSlopes">
-                </div>
-                <div class="form-group">
-                    <label for="greenSlopes">Numero de pistas verdes</label>
-                    <input type="number" class="form-control" id="greenSlopes" name="greenSlopes">
-                </div>
-                <div class="form-group">
-                    <label for="redSlopes">Numero de pistas rojas</label>
-                    <input type="number" class="form-control" id="redSlopes" name="redSlopes">
-                </div>
-                <div class="form-group">
-                    <label for="blackSlopes">Numero de pistas negras</label>
-                    <input type="number" class="form-control" id="blackSlopes" name="blackSlopes">
-                </div>
-                <div class="form-group">
-                    <label for="maxCote">Cota máxima</label>
-                    <input type="number" class="form-control" id="maxCote" name="maxCote">
-                </div>
-                <div class="form-group">
-                    <label for="minCote">Cota minima</label>
-                    <input type="number" class="form-control" id="minCote" name="minCote">
-                </div>
-                <div class="form-group">
-                    <label for="priceDay">Precio del forfait</label>
-                    <input type="number" class="form-control" id="priceDay" name="priceDay">
-                </div>
-                <div class="form-group">
-                    <label for="imgbackground">Imagen de background</label>
-                    <input type="file" class="form-control-file" id="imgbackground" name="imgFile">
-                </div>
-                <button type="submit" class="btn btn-dark btn-block">Crear estación</button>
+            <div class="col-md-6">
+                <h2>Nueva estación</h2>
                 <hr>
 
-            </form>
-        </div>
-    </div>
+                <form action="/stations/create" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="zone">Ubicación</label>
+                        <input type="text" class="form-control" id="zone" name="zone">
+                    </div>
+                    <div class="form-group">
+                        <label>Coordenadas</label>
+                        <input type="text" name="latitude" placeholder="latitud">
+                        <input type="text" name="longitude" placeholder="longitud">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descripción</label>
+                        <input type="text" class="form-control" id="description" name="description">
+                    </div>
+                    <div class="form-group">
+                        <label for="dateOpen">Fecha de apertura</label>
+                        <input type="date" id="dateOpen" name="dateOpen" min="2021-09-13" max="2022-01-01" />
+                    </div>
+                    <div class="form-group">
+                        <label for="dateClose">Fecha de cierre</label>
+                        <input type="date" id="dateClose" name="dateClose" min="2021-09-13" max="2023-01-01" />
+                    </div>
+                    <div class="form-group">
+                        <label for="capacity">Capacidad de la estación</label>
+                        <input type="number" class="form-control" id="capacity" name="capacity">
+                    </div>
+                    <div class="form-group">
+                        <label for="kmSlopes">Km de pista esquiables</label>
+                        <input type="number" class="form-control" id="kmSlopes" name="kmSlopes">
+                    </div>
+                    <div class="form-group">
+                        <label for="numberOfslopes">Total de pistas</label>
+                        <input type="number" class="form-control" id="numberOfslopes" name="numberOfslopes">
+                    </div>
+                    <div class="form-group">
+                        <label for="snowpark">Numero de snowpark de la estación</label>
+                        <input type="number" class="form-control" id="snowpark" name="snowpark">
+                    </div>
+                    <div class="form-group">
+                        <label for="mapSlopes">Mapa de pistas</label>
+                        <input type="file" class="form-control-file" id="mapSlopes" name="imgFile">
+                    </div>
+                    <div class="form-group">
+                        <label for="blueSlopes">Numero de pistas azules</label>
+                        <input type="number" class="form-control" id="blueSlopes" name="blueSlopes">
+                    </div>
+                    <div class="form-group">
+                        <label for="greenSlopes">Numero de pistas verdes</label>
+                        <input type="number" class="form-control" id="greenSlopes" name="greenSlopes">
+                    </div>
+                    <div class="form-group">
+                        <label for="redSlopes">Numero de pistas rojas</label>
+                        <input type="number" class="form-control" id="redSlopes" name="redSlopes">
+                    </div>
+                    <div class="form-group">
+                        <label for="blackSlopes">Numero de pistas negras</label>
+                        <input type="number" class="form-control" id="blackSlopes" name="blackSlopes">
+                    </div>
+                    <div class="form-group">
+                        <label for="maxCote">Cota máxima</label>
+                        <input type="number" class="form-control" id="maxCote" name="maxCote">
+                    </div>
+                    <div class="form-group">
+                        <label for="minCote">Cota minima</label>
+                        <input type="number" class="form-control" id="minCote" name="minCote">
+                    </div>
+                    <div class="form-group">
+                        <label for="priceDay">Precio del forfait</label>
+                        <input type="number" class="form-control" id="priceDay" name="priceDay">
+                    </div>
+                    <div class="form-group">
+                        <label for="imgbackground">Imagen de background</label>
+                        <input type="file" class="form-control-file" id="imgbackground" name="imgFile">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Crear estación</button>
+                    <hr>
 
+                </form>
+            </div>
+        </div>
+
+    </div>
 </div>
