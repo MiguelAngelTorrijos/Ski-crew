@@ -177,7 +177,9 @@
             <a href="/stations" class="btn btn-primary">Volver</a>
         </div>
         <div class="col-3">
+            {{#if ADMIN}}
             <a href="/stations/edit/{{_id}}" class="btn btn-warning">Editar</a>
+            {{/if}}
         </div>
         <div class="col-3">
             <form action="/favs/{{_id}}" method="POST">

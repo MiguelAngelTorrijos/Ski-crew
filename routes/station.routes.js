@@ -1,7 +1,7 @@
 const router = require("express").Router()
 const Station = require('./../models/Station.model')
 const Comment = require('./../models/Comment.model')
-const { isLoggedIn } = require('./../middleware')
+const { isLoggedIn, checkRoles } = require('./../middleware')
 const CDNupload = require('../config/cloudinary.config')
 const { formatDate } = require("../utils")
 
@@ -11,7 +11,8 @@ router.get('/', isLoggedIn, (req, res, next) => {
 
     Station
         .find()
-        .then(stations => res.render('stations/list', { stations }))
+        .then(stations => res.render('stations/list', { stations, isLogged: req.session.currentUser, ADMIN: req.session.currentUser.role === 'ADMIN' }
+        ))
         .catch(err => console.log(err))
 })
 
@@ -80,7 +81,13 @@ router.get('/edit/comment/:id', (req, res) => {
 
     Comment
         .findById(id)
-        .then(comments => res.render('stations/edit-comment', comments))
+        .then(comments => {
+            if (!comments.user.equals(req.session.currentUser._id)) {
+                console.log(req.session.currentUser, comments.user, comments.user.equals(req.session.currentUser._id))
+                res.redirect('/stations');
+            }
+            res.render('stations/edit-comment', comments)
+        })
         .catch(err => console.log(err))
 })
 
@@ -146,7 +153,7 @@ router.post('/edit/:id', CDNupload.array('imgFile'), (req, res) => {
         }
     }
 
-    
+
     req.files[0] && (query.stationInfo.mapSlopes = req.files[0].path)
     req.files[1] && (query.imgbackground = req.files[1].path)
 
@@ -164,8 +171,14 @@ router.post('/delete/:id', (req, res) => {
 
     const { id } = req.params
 
-    Comment
-        .findByIdAndRemove(id)
+    Comment.findById(id)
+        .then((comment) => {
+            if (!comment.user.equals(req.session.currentUser._id)) {
+                console.log(req.session.currentUser, comment.user, comment.user.equals(req.session.currentUser._id))
+                return
+            }
+            return Comment.findByIdAndRemove(id)
+        })
         .then(() => { res.redirect('/stations') })
         .catch(err => console.log(err))
 })
@@ -188,7 +201,8 @@ router.get('/:id', isLoggedIn, (req, res) => {
                 e.date = formatDate(e.date)
                 return e
             })
-            res.render('stations/details', theStation)
+            res.render('stations/details', { theStation, isLoggedIn: req.session.currentUser, ADMIN: req.session.currentUser.role === 'ADMIN' }
+            )
         })
         .catch(err => console.log(err))
 })

@@ -28,7 +28,9 @@
                <a class='nav-link' href='/stations'>Estaciones</a>
             </li>
             <li class='nav-item'>
+               {{#if ADMIN}}
                <a class='nav-link' href='/stations/create'>Crear una estación</a>
+               {{/if}}
             </li>
             <li class='nav-item'>
                <a class='nav-link' href='/profile'>Perfil</a>
@@ -37,7 +39,9 @@
                <a class='nav-link' href='/favs'>Favoritos</a>
             </li>
             <li class='nav-item'>
+               {{#if ADMIN}}
                <a class='nav-link' href='/events/new'>Nuevo evento</a>
+               {{/if}}
             </li>
             <li class='nav-item'>
                <a class='nav-link' href='/logout'>LogOut</a>
